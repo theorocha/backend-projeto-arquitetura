@@ -41,9 +41,4 @@ public class Empresa {
     @JoinColumn(name = "setor_atuacao")
     private SetorAtuacao setorAtuacao;
 
-
-
-
-
-
 }
