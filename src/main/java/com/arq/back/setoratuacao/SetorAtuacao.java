@@ -1,9 +1,7 @@
 package com.arq.back.setoratuacao;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
@@ -18,8 +16,8 @@ import lombok.*;
 public class SetorAtuacao {
 
     @Id
-    @NotNull
     @Schema(description = "Identificador único", example = "1")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NotNull

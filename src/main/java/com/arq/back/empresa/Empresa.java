@@ -18,7 +18,6 @@ import lombok.*;
 public class Empresa {
 
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Schema(description = "Identificador único", example = "1")
     private Long id;
@@ -33,12 +32,13 @@ public class Empresa {
 
     @ManyToOne
     @NotNull
-    @JoinColumn(name = "endereco")
+    @JoinColumn(name = "endereco_id")
+    @Schema(description = "Endereço da empresa", example = "Asa sul, 71890-329, Brasilia")
     private Endereco endereco;
 
     @ManyToOne
     @NotNull
-    @JoinColumn(name = "setor_atuacao")
+    @Schema(description = "Setor de atuação da empresa", example = "Arquitetura e interiores")
+    @JoinColumn(name = "setor_atuacao_id")
     private SetorAtuacao setorAtuacao;
-
 }
