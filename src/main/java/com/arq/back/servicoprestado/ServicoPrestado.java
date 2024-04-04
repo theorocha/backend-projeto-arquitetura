@@ -14,7 +14,7 @@ import lombok.*;
 @EqualsAndHashCode(of = "id")
 @AllArgsConstructor
 @NoArgsConstructor
-@Schema(description = "Serviço extra atrelada à empresa")
+@Schema(description = "Serviço extra atrelado à empresa")
 public class ServicoPrestado {
 
     @Id

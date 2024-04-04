@@ -1,11 +1,17 @@
 package com.arq.back.empresa;
 
+import com.arq.back.administrador.Administrador;
+import com.arq.back.cliente.Cliente;
 import com.arq.back.endereco.Endereco;
+import com.arq.back.servicoextra.ServicoExtra;
 import com.arq.back.setoratuacao.SetorAtuacao;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "empresa")
@@ -41,4 +47,15 @@ public class Empresa {
     @Schema(description = "Setor de atuação da empresa", example = "Arquitetura e interiores")
     @JoinColumn(name = "setor_atuacao_id")
     private SetorAtuacao setorAtuacao;
+
+    @JsonIgnore
+    @Transient
+    List<ServicoExtra> servicosExtras;
+
+    @JsonIgnore
+    @Transient
+    List<Administrador> administradores;
+
+    @ManyToMany(mappedBy = "empresas")
+    private List<Cliente> clientes;
 }
