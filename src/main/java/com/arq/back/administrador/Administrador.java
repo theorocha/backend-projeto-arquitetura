@@ -25,9 +25,9 @@ public class Administrador {
     @Schema(description = "Nome do administrador da empresa", example = "João Silva")
     private String nome;
 
-    @NotNull
-    @Schema(description = "CPF do adm da empresa", example = "999.134.314-22")
-    private String cpf;
+    @Column(unique = true,length = 11)
+    @Schema(description = "CPF do administrador da empresa", example = "12345634567")
+    private Long cpf;
 
     @NotNull
     @Schema(description = "Senha", example = "123-Theo!#")

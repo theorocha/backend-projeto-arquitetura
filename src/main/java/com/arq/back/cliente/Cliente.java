@@ -2,15 +2,17 @@ package com.arq.back.cliente;
 
 import com.arq.back.empresa.Empresa;
 import com.arq.back.endereco.Endereco;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "empresa")
+@Table(name = "cliente")
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
@@ -24,8 +26,12 @@ public class Cliente {
     @Schema(description = "Identificador único", example = "1")
     private Long id;
 
+    @Column(unique = true,length = 11)
+    @Schema(description = "CPF do cliente", example = "12345634567")
+    private Long cpf;
+
     @NotNull
-    @Schema(description = "Nome do liente", example = "João Silva")
+    @Schema(description = "Nome do cliente", example = "João Silva")
     private String nome;
 
     @NotNull
@@ -45,9 +51,11 @@ public class Cliente {
     @NotNull
     private Endereco endereco;
 
-    @ManyToMany
+
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "cliente_empresa",
             joinColumns = @JoinColumn(name = "cliente_id"),
             inverseJoinColumns = @JoinColumn(name = "empresa_id"))
-    private List<Empresa> empresas;
+    private Set<Empresa> empresas = new HashSet<>();
 }

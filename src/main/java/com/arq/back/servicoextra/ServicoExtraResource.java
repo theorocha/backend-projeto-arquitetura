@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/servico-extra")
 @Schema(description = "Controlador de serviço extra")
 public class ServicoExtraResource {
 
@@ -19,8 +19,8 @@ public class ServicoExtraResource {
     ServicoExtraServices servicoExtraServices;
 
     @Operation(summary = "Obter todos os serviços extra de uma empresa")
-    @GetMapping("/servico-extra/empresa/{id}")
-    public List<ServicoExtra> findAllByEmpresa(@PathVariable("id") Long id){
+    @GetMapping("/empresa/{empresa-id}")
+    public List<ServicoExtra> findAllByEmpresa(@PathVariable("empresa-id") Long id){
         return servicoExtraServices.findAllByEmpresa(id);
     }
 }

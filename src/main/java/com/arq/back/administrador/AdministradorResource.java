@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/administrador")
 @Schema(description = "Controlador do administrador")
 public class AdministradorResource {
 
@@ -20,7 +20,7 @@ public class AdministradorResource {
     AdministradorServices administradorServices;
 
     @Operation(summary = "Obter todos os administradores de uma empresa")
-    @GetMapping("/administrador/empresa/{id}")
-    public List<Administrador> findAllByEmpresa(@PathVariable("id") Long id){
+    @GetMapping("/empresa/{empresa-id}")
+    public List<Administrador> findAllByEmpresa(@PathVariable("empresa-id") Long id){
         return administradorServices.findAllByEmpresa(id);
     }}

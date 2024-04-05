@@ -11,7 +11,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "empresa")
@@ -50,12 +52,14 @@ public class Empresa {
 
     @JsonIgnore
     @Transient
-    List<ServicoExtra> servicosExtras;
+    private List<ServicoExtra> servicosExtras;
 
     @JsonIgnore
     @Transient
-    List<Administrador> administradores;
+    private List<Administrador> administradores;
 
-    @ManyToMany(mappedBy = "empresas")
-    private List<Cliente> clientes;
+    @Transient
+    @JsonIgnore
+    @ManyToMany(mappedBy = "empresas",fetch = FetchType.LAZY)
+    private Set<Cliente> clientes = new HashSet<>();
 }
