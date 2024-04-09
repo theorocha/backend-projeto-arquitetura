@@ -51,14 +51,13 @@ public class Empresa {
     private SetorAtuacao setorAtuacao;
 
     @JsonIgnore
-    @Transient
-    private List<ServicoExtra> servicosExtras;
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
+    private Set<ServicoExtra> servicosExtras = new HashSet<>();
 
     @JsonIgnore
-    @Transient
-    private List<Administrador> administradores;
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
+    private Set<Administrador> administradores = new HashSet<>();
 
-    @Transient
     @JsonIgnore
     @ManyToMany(mappedBy = "empresas",fetch = FetchType.LAZY)
     private Set<Cliente> clientes = new HashSet<>();

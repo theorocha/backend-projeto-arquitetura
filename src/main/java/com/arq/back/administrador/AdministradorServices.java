@@ -15,16 +15,4 @@ public class AdministradorServices {
     @Autowired
     AdministradorRepository administradorRepository;
 
-    @Autowired
-    EmpresaRepository empresaRepository;
-
-    public List<Administrador> findAllByEmpresa(Long id) {
-        Optional<Empresa> empresaOpcional = empresaRepository.findById(id);
-        if (empresaOpcional.isPresent()) {
-            Empresa empresa = empresaOpcional.get();
-            return administradorRepository.findAllByEmpresa(Optional.of(empresa));
-        } else {
-            return Collections.emptyList();
-        }
-    }
 }

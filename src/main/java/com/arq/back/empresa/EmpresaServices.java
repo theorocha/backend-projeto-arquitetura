@@ -1,9 +1,9 @@
 package com.arq.back.empresa;
 
+import com.arq.back.administrador.Administrador;
 import com.arq.back.cliente.Cliente;
-import com.arq.back.cliente.ClienteRepository;
-import com.arq.back.exceptions.ClienteNotFoundException;
-import com.arq.back.exceptions.EmpresaNotFoundException;
+import com.arq.back.exceptions.empresa.EmpresaNotFoundException;
+import com.arq.back.servicoextra.ServicoExtra;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,20 +16,26 @@ public class EmpresaServices {
     @Autowired
     EmpresaRepository empresaRepository;
 
-    @Autowired
-    ClienteRepository clienteRepository;
-
-
     public List<Empresa> findAll() {
         return empresaRepository.findAll();
     }
 
 
     public Set<Cliente> findAllClientesEmpresa(Long empresaId) {
-        Empresa empresa = empresaRepository.findById(empresaId)
-                .orElseThrow(() -> {
-                    return new EmpresaNotFoundException("Não há empresa com esse id.");
-                });
+        empresaRepository.findById(empresaId)
+                .orElseThrow(() -> new EmpresaNotFoundException("Não há empresa com o Id: " + empresaId));
         return empresaRepository.findAllClientesDaEmpresa(empresaId);
+    }
+
+    public Set<Administrador> findAllAdministradoresEmpresa(Long empresaId) {
+       Empresa empresa = empresaRepository.findById(empresaId)
+                .orElseThrow(() -> new EmpresaNotFoundException("Não há empresa com o Id: " + empresaId));
+        return empresa.getAdministradores();
+    }
+
+    public Set<ServicoExtra> findAllServicosExtrasEmpresa(Long empresaId) {
+        Empresa empresa = empresaRepository.findById(empresaId)
+                .orElseThrow(() -> new EmpresaNotFoundException("Não há empresa com o Id: " + empresaId));
+        return empresa.getServicosExtras();
     }
 }

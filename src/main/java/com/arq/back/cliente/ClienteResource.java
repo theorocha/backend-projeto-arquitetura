@@ -4,10 +4,8 @@ import com.arq.back.empresa.Empresa;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
@@ -23,5 +21,12 @@ public class ClienteResource {
     @GetMapping("{cliente-id}/empresas")
     public Set<Empresa> findAllEmpresaCliente(@PathVariable("cliente-id") Long clienteId){
         return clienteServices.findAllEmpresaCliente(clienteId);
+    }
+
+    @Operation(summary = "Adicionar uma empresa à lista de empresas do cliente")
+    @PostMapping("{cliente-id}/empresa/{empresa-id}")
+    public ResponseEntity<Cliente> addEmpresaToEmpresas(@PathVariable("cliente-id") Long clienteId,
+                                                        @PathVariable("empresa-id") Long empresaId){
+        return clienteServices.addEmpresaToEmpresas(clienteId,empresaId);
     }
 }

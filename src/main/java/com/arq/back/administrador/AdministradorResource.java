@@ -19,8 +19,4 @@ public class AdministradorResource {
     @Autowired
     AdministradorServices administradorServices;
 
-    @Operation(summary = "Obter todos os administradores de uma empresa")
-    @GetMapping("/empresa/{empresa-id}")
-    public List<Administrador> findAllByEmpresa(@PathVariable("empresa-id") Long id){
-        return administradorServices.findAllByEmpresa(id);
-    }}
+}

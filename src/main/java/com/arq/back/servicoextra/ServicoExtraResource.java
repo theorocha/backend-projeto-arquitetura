@@ -17,10 +17,4 @@ public class ServicoExtraResource {
 
     @Autowired
     ServicoExtraServices servicoExtraServices;
-
-    @Operation(summary = "Obter todos os serviços extra de uma empresa")
-    @GetMapping("/empresa/{empresa-id}")
-    public List<ServicoExtra> findAllByEmpresa(@PathVariable("empresa-id") Long id){
-        return servicoExtraServices.findAllByEmpresa(id);
-    }
 }

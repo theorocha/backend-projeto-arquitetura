@@ -1,6 +1,8 @@
 package com.arq.back.empresa;
 
+import com.arq.back.administrador.Administrador;
 import com.arq.back.cliente.Cliente;
+import com.arq.back.servicoextra.ServicoExtra;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,4 +35,15 @@ public class EmpresaResource {
         return empresaServices.findAllClientesEmpresa(empresaId);
     }
 
+    @Operation(summary = "Obter todos os administradores de uma empresa")
+    @GetMapping("{empresa-id}/administradores")
+    public Set<Administrador> findAllAdministradoresDaEmpresa(@PathVariable("empresa-id") Long empresaId){
+        return empresaServices.findAllAdministradoresEmpresa(empresaId);
+    }
+
+    @Operation(summary = "Obter todos os serviços extras de uma empresa")
+    @GetMapping("{empresa-id}/servicos-extras")
+    public Set<ServicoExtra> findAllServicosExtrasDaEmpresa(@PathVariable("empresa-id") Long empresaId){
+        return empresaServices.findAllServicosExtrasEmpresa(empresaId);
+    }
 }

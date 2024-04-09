@@ -1,12 +1,12 @@
-package com.arq.back.exceptions;
+package com.arq.back.exceptions.cliente;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class EmpresaNotFoundException extends RuntimeException{
+public class ClienteNotFoundException extends RuntimeException {
 
-    public EmpresaNotFoundException(String message) {
+    public ClienteNotFoundException(String message) {
         super(message);
     }
 }
