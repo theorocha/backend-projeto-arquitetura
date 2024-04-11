@@ -31,10 +31,6 @@ O Sistema de Gerenciamento de Obras é uma aplicação destinada a auxiliar na g
 
 A documentação da API está disponível em `/swagger-ui.html`, uma vez que o servidor estiver em execução.
 
-## Contribuindo
-
-Contribuições são sempre bem-vindas! Sinta-se à vontade para abrir issues ou pull requests com sugestões, correções ou novos recursos.
-
 ## Licença
 
 Este projeto está licenciado sob a [Licença MIT](LICENSE).
