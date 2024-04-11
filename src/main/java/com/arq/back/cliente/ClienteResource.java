@@ -1,6 +1,7 @@
 package com.arq.back.cliente;
 
 import com.arq.back.empresa.Empresa;
+import com.arq.back.orcamentoecontrato.OrcamentoContrato;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class ClienteResource {
 
     @Operation(summary = "Obter todas as empresas de um cliente")
     @GetMapping("{cliente-id}/empresas")
-    public Set<Empresa> findAllEmpresaCliente(@PathVariable("cliente-id") Long clienteId){
+    public Set<Empresa> findAllEmpresa(@PathVariable("cliente-id") Long clienteId){
         return clienteServices.findAllEmpresaCliente(clienteId);
     }
 
@@ -28,5 +29,11 @@ public class ClienteResource {
     public ResponseEntity<Cliente> addEmpresaToEmpresas(@PathVariable("cliente-id") Long clienteId,
                                                         @PathVariable("empresa-id") Long empresaId){
         return clienteServices.addEmpresaToEmpresas(clienteId,empresaId);
+    }
+
+    @Operation(summary = "Listar todos os orçamentos de um cliente")
+    @GetMapping("{cliente-id}/orcamento")
+    public Set<OrcamentoContrato> addEmpresaToEmpresas(@PathVariable("cliente-id") Long clienteId){
+        return clienteServices.findAllOrcamento(clienteId);
     }
 }

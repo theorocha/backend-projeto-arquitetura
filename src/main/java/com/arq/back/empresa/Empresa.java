@@ -3,7 +3,9 @@ package com.arq.back.empresa;
 import com.arq.back.administrador.Administrador;
 import com.arq.back.cliente.Cliente;
 import com.arq.back.endereco.Endereco;
+import com.arq.back.orcamentoecontrato.OrcamentoContrato;
 import com.arq.back.servicoextra.ServicoExtra;
+import com.arq.back.servicoprestado.ServicoPrestado;
 import com.arq.back.setoratuacao.SetorAtuacao;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -12,7 +14,6 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -38,6 +39,9 @@ public class Empresa {
     @Schema(description = "CNPJ da empresa", example = "11414441/0001-98")
     private String cnpj;
 
+    @Schema(description = "Telefone da empresa", example = "61999116902")
+    private String telefone;
+
     @ManyToOne
     @NotNull
     @JoinColumn(name = "endereco_id")
@@ -46,8 +50,8 @@ public class Empresa {
 
     @ManyToOne
     @NotNull
-    @Schema(description = "Setor de atuação da empresa", example = "Arquitetura e interiores")
     @JoinColumn(name = "setor_atuacao_id")
+    @Schema(description = "Setor de atuação da empresa", example = "Arquitetura e interiores")
     private SetorAtuacao setorAtuacao;
 
     @JsonIgnore
@@ -61,4 +65,12 @@ public class Empresa {
     @JsonIgnore
     @ManyToMany(mappedBy = "empresas",fetch = FetchType.LAZY)
     private Set<Cliente> clientes = new HashSet<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
+    private Set<ServicoPrestado> servicosPrestados = new HashSet<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
+    private Set<OrcamentoContrato> orcamentos = new HashSet<>();
 }

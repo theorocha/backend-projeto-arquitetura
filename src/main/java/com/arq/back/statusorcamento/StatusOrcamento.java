@@ -21,4 +21,6 @@ public class StatusOrcamento {
 
     @Schema(description = "Descricao do status", example = "Em análise")
     private String descricao;
+
+
 }

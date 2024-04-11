@@ -5,6 +5,7 @@ import com.arq.back.empresa.EmpresaRepository;
 import com.arq.back.exceptions.cliente.ClienteNotFoundException;
 import com.arq.back.exceptions.cliente.EmpresaAlreadyAssociatedException;
 import com.arq.back.exceptions.empresa.EmpresaNotFoundException;
+import com.arq.back.orcamentoecontrato.OrcamentoContrato;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,18 +23,12 @@ public class ClienteServices {
     EmpresaRepository empresaRepository;
 
     public Set<Empresa> findAllEmpresaCliente(Long clienteId) {
-        Cliente cliente = clienteRepository.findById(clienteId)
-                .orElseThrow(() -> {
-                    return new ClienteNotFoundException("Não há cliente com o Id: " + clienteId);
-                });
+        Cliente cliente = returnClientOrThrowException(clienteId);
         return cliente.getEmpresas();
     }
 
     public ResponseEntity<Cliente> addEmpresaToEmpresas(Long clienteId, Long empresaId) {
-        Cliente cliente = clienteRepository.findById(clienteId)
-                .orElseThrow(() -> {
-                    return new ClienteNotFoundException("Não há cliente com o Id: " + clienteId);
-                });
+        Cliente cliente = returnClientOrThrowException(clienteId);
         Empresa empresa = empresaRepository.findById(empresaId)
                 .orElseThrow(() -> new EmpresaNotFoundException("Não há empresa com o Id: " + empresaId));
 
@@ -45,5 +40,16 @@ public class ClienteServices {
         cliente.getEmpresas().add(empresa);
         clienteRepository.save(cliente);
         return ResponseEntity.status(HttpStatus.CREATED).body(cliente);
+    }
+
+    public Set<OrcamentoContrato> findAllOrcamento(Long clienteId) {
+        Cliente cliente = returnClientOrThrowException(clienteId);
+        return cliente.getOrcamentos();
+    }
+
+    private Cliente returnClientOrThrowException(Long clienteId){
+        return clienteRepository.findById(clienteId)
+                .orElseThrow(() -> new ClienteNotFoundException("Não há cliente com o Id: " + clienteId));
+
     }
 }

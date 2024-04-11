@@ -1,7 +1,6 @@
 package com.arq.back.servicoprestado;
 
 import com.arq.back.empresa.Empresa;
-import com.arq.back.statusservico.StatusServico;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -25,12 +24,6 @@ public class ServicoPrestado {
     @NotNull
     @Schema(description = "Descricao do servico prestado", example = "Marketing digital")
     private String descricao;
-
-    @ManyToOne
-    @JoinColumn(name = "status_id")
-    @NotNull
-    @Schema(description = "Status servico prestado", example = "1, PENDENTE")
-    private StatusServico status;
 
     @ManyToOne
     @JoinColumn(name = "empresa_id")

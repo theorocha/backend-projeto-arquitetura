@@ -2,7 +2,9 @@ package com.arq.back.empresa;
 
 import com.arq.back.administrador.Administrador;
 import com.arq.back.cliente.Cliente;
+import com.arq.back.orcamentoecontrato.OrcamentoContrato;
 import com.arq.back.servicoextra.ServicoExtra;
+import com.arq.back.servicoprestado.ServicoPrestado;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,19 +33,31 @@ public class EmpresaResource {
 
     @Operation(summary = "Obter todos os clientes de uma empresa")
     @GetMapping("{empresa-id}/clientes")
-    private Set<Cliente> findAllClientesDaEmpresa(@PathVariable("empresa-id") Long empresaId){
+    public Set<Cliente> findAllClientes(@PathVariable("empresa-id") Long empresaId){
         return empresaServices.findAllClientesEmpresa(empresaId);
     }
 
     @Operation(summary = "Obter todos os administradores de uma empresa")
     @GetMapping("{empresa-id}/administradores")
-    public Set<Administrador> findAllAdministradoresDaEmpresa(@PathVariable("empresa-id") Long empresaId){
+    public Set<Administrador> findAllAdministradores(@PathVariable("empresa-id") Long empresaId){
         return empresaServices.findAllAdministradoresEmpresa(empresaId);
     }
 
     @Operation(summary = "Obter todos os serviços extras de uma empresa")
     @GetMapping("{empresa-id}/servicos-extras")
-    public Set<ServicoExtra> findAllServicosExtrasDaEmpresa(@PathVariable("empresa-id") Long empresaId){
+    public Set<ServicoExtra> findAllServicosExtras(@PathVariable("empresa-id") Long empresaId){
         return empresaServices.findAllServicosExtrasEmpresa(empresaId);
+    }
+
+    @Operation(summary = "Obter todos os serviços prestados de uma empresa")
+    @GetMapping("{empresa-id}/servicos-prestados")
+    public Set<ServicoPrestado> findAllServicosPrestados(@PathVariable("empresa-id") Long empresaId){
+        return empresaServices.findAllServicosPrestadosEmpresa(empresaId);
+    }
+
+    @Operation(summary = "Obter todos os serviços prestados de uma empresa")
+    @GetMapping("{empresa-id}/orcamentos")
+    public Set<OrcamentoContrato> findAllOrcamentos(@PathVariable("empresa-id") Long empresaId){
+        return empresaServices.findAllOrcamentos(empresaId);
     }
 }
