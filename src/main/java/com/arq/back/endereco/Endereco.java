@@ -45,6 +45,4 @@ public class Endereco {
 
     @Schema(description = "Complemento do endereço", example = "Cj 2 Casa 4")
     private String complemento;
-
-    //Todo clientes
 }
