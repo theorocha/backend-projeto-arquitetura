@@ -1,4 +1,4 @@
-package com.arq.back.exceptions.cliente;
+package com.arq.back.exceptions.empresa;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

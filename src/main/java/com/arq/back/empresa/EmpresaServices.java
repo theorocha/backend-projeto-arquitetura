@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -51,5 +52,9 @@ public class EmpresaServices {
     private Empresa returnEmpresaOrThrowException(Long empresaId){
         return empresaRepository.findById(empresaId)
                 .orElseThrow(() -> new EmpresaNotFoundException("Não há empresa com o Id: " + empresaId));
+    }
+
+    public Empresa findById(Long empresaId) {
+        return returnEmpresaOrThrowException(empresaId);
     }
 }

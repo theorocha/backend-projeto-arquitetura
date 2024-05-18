@@ -1,7 +1,7 @@
 package com.arq.back.exceptions;
 
 import com.arq.back.exceptions.cliente.ClienteNotFoundException;
-import com.arq.back.exceptions.cliente.EmpresaAlreadyAssociatedException;
+import com.arq.back.exceptions.empresa.EmpresaAlreadyAssociatedException;
 import com.arq.back.exceptions.empresa.EmpresaNotFoundException;
 import com.arq.back.exceptions.orcamento.OrcamentoNotFoundException;
 import org.springframework.http.HttpStatus;

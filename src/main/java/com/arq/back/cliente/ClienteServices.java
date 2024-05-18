@@ -3,7 +3,7 @@ package com.arq.back.cliente;
 import com.arq.back.empresa.Empresa;
 import com.arq.back.empresa.EmpresaRepository;
 import com.arq.back.exceptions.cliente.ClienteNotFoundException;
-import com.arq.back.exceptions.cliente.EmpresaAlreadyAssociatedException;
+import com.arq.back.exceptions.empresa.EmpresaAlreadyAssociatedException;
 import com.arq.back.exceptions.empresa.EmpresaNotFoundException;
 import com.arq.back.orcamentoecontrato.OrcamentoContrato;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,6 @@ public class ClienteServices {
             throw new EmpresaAlreadyAssociatedException("A empresa de id: " + empresaId +
                     " já está associada ao cliente de id: " + clienteId);
         }
-
         cliente.getEmpresas().add(empresa);
         clienteRepository.save(cliente);
         return ResponseEntity.status(HttpStatus.CREATED).body(cliente);

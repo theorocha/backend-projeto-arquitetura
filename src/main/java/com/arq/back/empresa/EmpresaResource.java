@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @RestController
@@ -28,6 +29,12 @@ public class EmpresaResource {
     @GetMapping
     public List<Empresa> findAll(){
         return empresaServices.findAll();
+    }
+
+    @Operation(summary = "Obtém empresa pelo Id")
+    @GetMapping("{empresaId}")
+    public Empresa findById(@PathVariable Long empresaId){
+        return empresaServices.findById(empresaId);
     }
 
 

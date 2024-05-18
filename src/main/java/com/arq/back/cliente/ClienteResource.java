@@ -32,7 +32,7 @@ public class ClienteResource {
     }
 
     @Operation(summary = "Listar todos os orçamentos de um cliente")
-    @GetMapping("{cliente-id}/orcamento")
+    @GetMapping("{cliente-id}/orcamentos")
     public Set<OrcamentoContrato> addEmpresaToEmpresas(@PathVariable("cliente-id") Long clienteId){
         return clienteServices.findAllOrcamento(clienteId);
     }
