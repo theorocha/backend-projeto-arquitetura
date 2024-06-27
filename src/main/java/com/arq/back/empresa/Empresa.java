@@ -67,7 +67,7 @@ public class Empresa {
     private Set<Cliente> clientes = new HashSet<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ServicoPrestado> servicosPrestados = new HashSet<>();
 
     @JsonIgnore
