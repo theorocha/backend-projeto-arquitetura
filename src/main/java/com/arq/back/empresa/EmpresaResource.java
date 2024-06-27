@@ -8,13 +8,10 @@ import com.arq.back.servicoprestado.ServicoPrestado;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 @RestController
@@ -32,8 +29,8 @@ public class EmpresaResource {
     }
 
     @Operation(summary = "Obtém empresa pelo Id")
-    @GetMapping("{empresaId}")
-    public Empresa findById(@PathVariable Long empresaId){
+    @GetMapping("{empresa-id}")
+    public Empresa findById(@PathVariable("empresa-id") Long empresaId){
         return empresaServices.findById(empresaId);
     }
 
@@ -66,5 +63,12 @@ public class EmpresaResource {
     @GetMapping("{empresa-id}/orcamentos")
     public Set<OrcamentoContrato> findAllOrcamentos(@PathVariable("empresa-id") Long empresaId){
         return empresaServices.findAllOrcamentos(empresaId);
+    }
+
+
+    @Operation(summary = "Cria novo cliente associado à empresa")
+    @PostMapping("{empresa-id}/cliente")
+    public ResponseEntity<Cliente> saveClienteToEmpresa(@PathVariable("empresa-id") Long empresaId, @RequestBody Cliente cliente){
+        return empresaServices.saveClienteToEmpresa(empresaId, cliente);
     }
 }

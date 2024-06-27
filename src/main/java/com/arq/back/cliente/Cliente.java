@@ -52,7 +52,6 @@ public class Cliente {
     @NotNull
     private Endereco endereco;
 
-
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "cliente_empresa",
