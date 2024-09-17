@@ -46,9 +46,12 @@ public class ClienteServices {
         return cliente.getOrcamentos();
     }
 
-    private Cliente returnClientOrThrowException(Long clienteId){
+    public void deleteById(Long clienteId) {
+        clienteRepository.deleteById(clienteId);
+    }
+
+    public Cliente returnClientOrThrowException(Long clienteId){
         return clienteRepository.findById(clienteId)
                 .orElseThrow(() -> new ClienteNotFoundException("Não há cliente com o Id: " + clienteId));
-
     }
 }

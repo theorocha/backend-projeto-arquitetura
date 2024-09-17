@@ -71,4 +71,10 @@ public class EmpresaResource {
     public ResponseEntity<Cliente> saveClienteToEmpresa(@PathVariable("empresa-id") Long empresaId, @RequestBody Cliente cliente){
         return empresaServices.saveClienteToEmpresa(empresaId, cliente);
     }
+
+    @Operation(summary = "Remove um cliente da lista de clientes da empresa")
+    @DeleteMapping("{empresa-id}/cliente/{cliente-id}")
+    public void deleteClienteFromEmpresa(@PathVariable("empresa-id") Long empresaId, @PathVariable("cliente-id") Long clienteId){
+        empresaServices.deleteClienteFromEmpresa(empresaId, clienteId);
+    }
 }

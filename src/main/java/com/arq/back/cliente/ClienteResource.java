@@ -36,4 +36,9 @@ public class ClienteResource {
     public Set<OrcamentoContrato> addEmpresaToEmpresas(@PathVariable("cliente-id") Long clienteId){
         return clienteServices.findAllOrcamento(clienteId);
     }
+    @Operation(summary = "Exclui um cliente")
+    @GetMapping("{cliente-id}")
+    public void deleteCliente(@PathVariable("cliente-id") Long clienteId){
+        clienteServices.deleteById(clienteId);
+    }
 }

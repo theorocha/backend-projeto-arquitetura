@@ -3,6 +3,7 @@ package com.arq.back.empresa;
 import com.arq.back.administrador.Administrador;
 import com.arq.back.cliente.Cliente;
 import com.arq.back.cliente.ClienteRepository;
+import com.arq.back.cliente.ClienteServices;
 import com.arq.back.exceptions.empresa.EmpresaNotFoundException;
 import com.arq.back.orcamentoecontrato.OrcamentoContrato;
 import com.arq.back.servicoextra.ServicoExtra;
@@ -23,6 +24,9 @@ public class EmpresaServices {
 
     @Autowired
     ClienteRepository clienteRepository;
+
+    @Autowired
+    ClienteServices clienteServices;
 
     public List<Empresa> findAll() {
         return empresaRepository.findAll();
@@ -66,6 +70,15 @@ public class EmpresaServices {
         empresa.getClientes().add(newCliente);
         empresaRepository.save(empresa);
         return ResponseEntity.status(HttpStatus.CREATED).body(newCliente);
+    }
+
+    public void deleteClienteFromEmpresa(Long empresaId, Long clienteId) {
+        Empresa empresa = returnEmpresaOrThrowException(empresaId);
+        Cliente cliente = clienteServices.returnClientOrThrowException(clienteId);
+        empresa.getClientes().remove(cliente);
+        cliente.getEmpresas().remove(empresa);
+        empresaRepository.save(empresa);
+        clienteRepository.save(cliente);
     }
 
     private Empresa returnEmpresaOrThrowException(Long empresaId){
