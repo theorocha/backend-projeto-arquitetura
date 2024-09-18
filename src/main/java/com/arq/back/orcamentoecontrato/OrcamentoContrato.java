@@ -3,6 +3,7 @@ package com.arq.back.orcamentoecontrato;
 import com.arq.back.cliente.Cliente;
 import com.arq.back.empresa.Empresa;
 import com.arq.back.endereco.Endereco;
+import com.arq.back.obra.Obra;
 import com.arq.back.servicocontrato.ServicoContrato;
 import com.arq.back.statusorcamento.StatusOrcamento;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -76,4 +77,8 @@ public class OrcamentoContrato {
     @JsonIgnore
     @OneToMany(mappedBy = "orcamentoContrato", cascade = CascadeType.ALL)
     private Set<ServicoContrato> servicosContratos = new HashSet<>();
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "orcamentoContrato")
+    private Obra obra;
 }

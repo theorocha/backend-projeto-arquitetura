@@ -2,6 +2,7 @@ package com.arq.back.empresa;
 
 import com.arq.back.administrador.Administrador;
 import com.arq.back.cliente.Cliente;
+import com.arq.back.obra.Obra;
 import com.arq.back.orcamentoecontrato.OrcamentoContrato;
 import com.arq.back.servicoextra.ServicoExtra;
 import com.arq.back.servicoprestado.ServicoPrestado;
@@ -76,5 +77,11 @@ public class EmpresaResource {
     @DeleteMapping("{empresa-id}/cliente/{cliente-id}")
     public void deleteClienteFromEmpresa(@PathVariable("empresa-id") Long empresaId, @PathVariable("cliente-id") Long clienteId){
         empresaServices.deleteClienteFromEmpresa(empresaId, clienteId);
+    }
+
+    @Operation(summary = "Lista todas as obras de uma empresa")
+    @GetMapping("{empresa-id}/obra")
+    public Set<Obra> findAllObra(@PathVariable("empresa-id") Long empresaId){
+        return empresaServices.findAllObra(empresaId);
     }
 }

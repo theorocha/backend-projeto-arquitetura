@@ -5,6 +5,8 @@ import com.arq.back.cliente.Cliente;
 import com.arq.back.cliente.ClienteRepository;
 import com.arq.back.cliente.ClienteServices;
 import com.arq.back.exceptions.empresa.EmpresaNotFoundException;
+import com.arq.back.obra.Obra;
+import com.arq.back.obra.ObraRepository;
 import com.arq.back.orcamentoecontrato.OrcamentoContrato;
 import com.arq.back.servicoextra.ServicoExtra;
 import com.arq.back.servicoprestado.ServicoPrestado;
@@ -24,6 +26,9 @@ public class EmpresaServices {
 
     @Autowired
     ClienteRepository clienteRepository;
+
+    @Autowired
+    ObraRepository obraRepository;
 
     @Autowired
     ClienteServices clienteServices;
@@ -84,5 +89,10 @@ public class EmpresaServices {
     private Empresa returnEmpresaOrThrowException(Long empresaId){
         return empresaRepository.findById(empresaId)
                 .orElseThrow(() -> new EmpresaNotFoundException("Não há empresa com o Id: " + empresaId));
+    }
+
+
+    public Set<Obra> findAllObra(Long empresaId) {
+        return obraRepository.findByOrcamentoContratoEmpresaId(empresaId);
     }
 }

@@ -1,6 +1,7 @@
 package com.arq.back.servicocontrato;
 
 import com.arq.back.imagem.Imagem;
+import com.arq.back.obra.Obra;
 import com.arq.back.orcamentoecontrato.OrcamentoContrato;
 import com.arq.back.servicoprestado.ServicoPrestado;
 import com.arq.back.statusservico.StatusServico;
@@ -52,4 +53,8 @@ public class ServicoContrato {
     @JsonIgnore
     @OneToMany(mappedBy = "servicoContrato", cascade = CascadeType.ALL)
     private Set<Imagem> imagens = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "obra_id")
+    private Obra obra;
 }

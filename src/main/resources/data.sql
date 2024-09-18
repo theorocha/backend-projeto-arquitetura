@@ -5,6 +5,7 @@ INSERT INTO setor_atuacao (descricao) VALUES
 ('Desenvolvimento de software'),
 ('Marketing digital');
 
+
 --Status orçamento
 INSERT INTO status_orcamento(descricao) VALUES
 ('A enviar'),
@@ -13,12 +14,21 @@ INSERT INTO status_orcamento(descricao) VALUES
 ('Aceito'),
 ('Rejeitado');
 
+
+--Status razão encerramento da obra
+INSERT INTO razao_encerramento_obra(descricao) VALUES
+('Obra finalizada'),
+('Desistência da empresa'),
+('Desistência contratante');
+
+
 --Status Serviço
 INSERT INTO status_servico(descricao) VALUES
 ('Pendente'),
 ('Em progresso'),
 ('Finalizado'),
 ('Cancelado');
+
 
 --Endereco
 INSERT INTO endereco (pais, estado, cep, logradouro, bairro, numero, complemento) VALUES
@@ -27,10 +37,12 @@ INSERT INTO endereco (pais, estado, cep, logradouro, bairro, numero, complemento
 ('Brasil', 'RJ', '20000-000', 'Rua da Carioca', 'Centro', 500, NULL),
 ('Brasil', 'RS', '90000-000', 'Rua dos Andradas', 'Centro Histórico', 120, NULL);
 
+
 --Empresa
 INSERT INTO empresa (nome, cnpj, telefone, endereco_id, setor_atuacao_id) VALUES
 ('Arqline', '11414441/0001-98','61999116902', 1, 1),
 ('Araújo Ferreira', '41341341/0001-48','61999816902', 2, 2);
+
 
 --Administradores da empresa
 INSERT INTO administrador (nome, cpf, senha, empresa_id) VALUES
@@ -39,6 +51,7 @@ INSERT INTO administrador (nome, cpf, senha, empresa_id) VALUES
 ('Victor Ribeiro', 12345678902, '123', 2),
 ('André Rabelo', 12345678903, '123', 2);
 
+
 -- Serviços prestados
 INSERT INTO servico_prestado (descricao, empresa_id) VALUES
 ('Planejamento', 1),
@@ -46,6 +59,7 @@ INSERT INTO servico_prestado (descricao, empresa_id) VALUES
 ('Marcenaria', 1),
 ('Acabamento', 1),
 ('Pintura', 1);
+
 
 --Serviços extras de uma empresa
 INSERT INTO servico_extra (descricao, empresa_id) VALUES
@@ -61,6 +75,7 @@ INSERT INTO cliente (cpf, nome, email, celular, senha, endereco_id) VALUES
 (23456745678, 'Maria Santos', 'mariasantos@gmail.com', '61999116902', 'senha123', 2),
 (34567856789, 'Pedro Oliveira', 'pedrooliveira@gmail.com', '61999116903', 'senha123', 3);
 
+
 -- Inserir relacionamentos entre clientes e empresas
 INSERT INTO cliente_empresa (cliente_id, empresa_id)
 VALUES
@@ -73,18 +88,23 @@ VALUES
 
 -- Inserir orçamentos
 INSERT INTO orcamento_contrato (descricao, valor_contrato, data_envio, data_validade, observacao, endereco_id, cliente_id, empresa_id, status_id) VALUES
-('Projeto de design de interiores para uma residência de luxo.', 5000, '2023-02-11', '2023-02-19', 'Observação do contrato 1', 1, 1, 1, 1),
-('Serviços de consultoria em arquitetura para um projeto comercial.', 7000, '2023-03-15', '2023-03-25', 'Observação do contrato 2', 2, 2, 2, 2),
-('Iluminação básica la la la.', 70000, '2023-04-15', '2023-04-25', 'Observação do contrato 2', 3, 2, 2, 4),
-('Contrato de construção civil para uma nova sede corporativa.', 6000, '2023-04-20', '2023-04-30', 'Observação do contrato 3', 3, 3, 1, 3);
+('Projeto de design de interiores para uma residência de luxo.', 5000, '2023-02-11', '2023-02-19', 'Observação do contrato 1', 1, 1, 1, 4),
+('Contrato de construção civil para uma nova sede corporativa.', 6000, '2023-04-20', '2023-04-30', 'Esse já foi finalizado', 3, 3, 1, 4),
+('Serviços de consultoria em arquitetura para um projeto comercial.', 7000, '2023-03-15', '2023-03-25', 'Observação do contrato 2', 2, 2, 2, 2);
+
+
+-- Inserir obras
+INSERT INTO obra (ativa, orcamento_id, razao_encerramento) VALUES
+(1, 1, NULL),
+(0, 2, 1);
 
 
 -- Inserir serviços de um orçamento
-INSERT INTO servico_contrato (status_id, servico_prestado_id, orcamento_id) VALUES
-(1, 1, 1),
-(2, 2, 1),
-(2, 2, 2),
-(3, 3, 3);
+INSERT INTO servico_contrato (obra_id, status_id, servico_prestado_id, orcamento_id) VALUES
+(1, 3, 1, 1),
+(1, 3, 2, 1),
+(2, 4, 2, 2),
+(NULL, 1, 3, 3);
 
 
 --Insert imagens ao serviço relacionado

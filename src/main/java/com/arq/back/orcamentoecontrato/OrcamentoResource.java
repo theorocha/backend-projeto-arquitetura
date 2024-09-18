@@ -17,7 +17,7 @@ public class OrcamentoResource {
     @Autowired
     OrcamentoServices orcamentoServices;
 
-    @Operation(summary = "Obter todos os serviços prestados de uma empresa")
+    @Operation(summary = "Obter todos os serviços que constam em um orçamento")
     @GetMapping("{orcamento-id}/servicos")
     public Set<ServicoContrato> findAllServicos(@PathVariable("orcamento-id") Long orcamentoId){
         return orcamentoServices.findAllServicos(orcamentoId);
