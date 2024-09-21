@@ -59,7 +59,8 @@ public class EmpresaResource {
         return empresaServices.findAllServicosPrestadosEmpresa(empresaId);
     }
 
-    @Operation(summary = "Obter todos os serviços prestados de uma empresa")
+
+    @Operation(summary = "Obter todos os orçamentos de uma empresa")
     @GetMapping("{empresa-id}/orcamentos")
     public Set<OrcamentoContrato> findAllOrcamentos(@PathVariable("empresa-id") Long empresaId){
         return empresaServices.findAllOrcamentos(empresaId);
