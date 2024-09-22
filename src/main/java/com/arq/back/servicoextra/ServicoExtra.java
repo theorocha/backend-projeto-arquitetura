@@ -1,6 +1,7 @@
 package com.arq.back.servicoextra;
 
 import com.arq.back.empresa.Empresa;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -25,6 +26,8 @@ public class ServicoExtra {
     @Schema(description = "Descricao do servico extra", example = "Marketing digital")
     private String descricao;
 
+
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "empresa_id")
     @NotNull

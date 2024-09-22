@@ -15,8 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class EmpresaServices {
@@ -58,7 +57,10 @@ public class EmpresaServices {
 
     public Set<ServicoPrestado> findAllServicosPrestadosEmpresa(Long empresaId) {
         Empresa empresa = returnEmpresaOrThrowException(empresaId);
-        return empresa.getServicosPrestados();
+        Set<ServicoPrestado> servicosPrestados = empresa.getServicosPrestados();
+        List<ServicoPrestado> sortedServicos = new ArrayList<>(servicosPrestados);
+        sortedServicos.sort(Comparator.comparing(ServicoPrestado::getId));
+        return new LinkedHashSet<>(sortedServicos);
     }
 
     public Set<OrcamentoContrato> findAllOrcamentos(Long empresaId) {
