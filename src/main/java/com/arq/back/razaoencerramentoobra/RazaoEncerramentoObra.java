@@ -1,7 +1,10 @@
 package com.arq.back.razaoencerramentoobra;
 
+import com.arq.back.empresa.Empresa;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Entity
@@ -20,4 +23,11 @@ public class RazaoEncerramentoObra {
 
     @Schema(description = "Descricao da razão", example = "Obra finalizada")
     private String descricao;
+
+    @ManyToOne
+    @JoinColumn(name = "empresa_id")
+    @NotNull
+    @JsonIgnore
+    @Schema(description = "Empresa que  prestado", example = "Arqline")
+    private Empresa empresa;
 }

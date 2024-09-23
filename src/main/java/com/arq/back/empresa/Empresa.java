@@ -4,6 +4,7 @@ import com.arq.back.administrador.Administrador;
 import com.arq.back.cliente.Cliente;
 import com.arq.back.endereco.Endereco;
 import com.arq.back.orcamentoecontrato.OrcamentoContrato;
+import com.arq.back.razaoencerramentoobra.RazaoEncerramentoObra;
 import com.arq.back.servicoextra.ServicoExtra;
 import com.arq.back.servicoprestado.ServicoPrestado;
 import com.arq.back.setoratuacao.SetorAtuacao;
@@ -73,4 +74,8 @@ public class Empresa {
     @JsonIgnore
     @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
     private Set<OrcamentoContrato> orcamentos = new HashSet<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
+    private Set<RazaoEncerramentoObra> razaoEncerramentoObras = new HashSet<>();
 }

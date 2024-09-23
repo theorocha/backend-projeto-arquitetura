@@ -15,13 +15,6 @@ INSERT INTO status_orcamento(descricao) VALUES
 ('Rejeitado');
 
 
---Status razão encerramento da obra
-INSERT INTO razao_encerramento_obra(descricao) VALUES
-('Obra finalizada'),
-('Desistência da empresa'),
-('Desistência contratante');
-
-
 --Status Serviço
 INSERT INTO status_servico(descricao) VALUES
 ('Pendente'),
@@ -59,6 +52,13 @@ INSERT INTO servico_prestado (descricao, empresa_id) VALUES
 ('Marcenaria', 1),
 ('Acabamento', 1),
 ('Pintura', 1);
+
+
+--Status razão encerramento da obra
+INSERT INTO razao_encerramento_obra(descricao, empresa_id) VALUES
+('Obra finalizada', 1),
+('Desistência da empresa', 1),
+('Desistência do contratante', 1);
 
 
 --Serviços extras de uma empresa

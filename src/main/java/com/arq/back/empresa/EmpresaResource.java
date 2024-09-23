@@ -4,6 +4,7 @@ import com.arq.back.administrador.Administrador;
 import com.arq.back.cliente.Cliente;
 import com.arq.back.obra.Obra;
 import com.arq.back.orcamentoecontrato.OrcamentoContrato;
+import com.arq.back.razaoencerramentoobra.RazaoEncerramentoObra;
 import com.arq.back.servicoextra.ServicoExtra;
 import com.arq.back.servicoprestado.ServicoPrestado;
 import io.swagger.v3.oas.annotations.Operation;
@@ -84,5 +85,11 @@ public class EmpresaResource {
     @GetMapping("{empresa-id}/obra")
     public Set<Obra> findAllObra(@PathVariable("empresa-id") Long empresaId){
         return empresaServices.findAllObra(empresaId);
+    }
+
+    @Operation(summary = "Lista todas as razoes de encerramento das obras de uma empresa")
+    @GetMapping("{empresa-id}/razao-encerramento")
+    public Set<RazaoEncerramentoObra> findAllRazoes(@PathVariable("empresa-id") Long empresaId){
+        return empresaServices.findAllfindAllRazoesObra(empresaId);
     }
 }

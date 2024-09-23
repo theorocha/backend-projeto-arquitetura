@@ -8,6 +8,7 @@ import com.arq.back.exceptions.empresa.EmpresaNotFoundException;
 import com.arq.back.obra.Obra;
 import com.arq.back.obra.ObraRepository;
 import com.arq.back.orcamentoecontrato.OrcamentoContrato;
+import com.arq.back.razaoencerramentoobra.RazaoEncerramentoObra;
 import com.arq.back.servicoextra.ServicoExtra;
 import com.arq.back.servicoprestado.ServicoPrestado;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,13 +89,17 @@ public class EmpresaServices {
         clienteRepository.save(cliente);
     }
 
+    public Set<Obra> findAllObra(Long empresaId) {
+        return obraRepository.findByOrcamentoContratoEmpresaId(empresaId);
+    }
+
+    public Set<RazaoEncerramentoObra> findAllfindAllRazoesObra(Long empresaId) {
+        Empresa empresa = returnEmpresaOrThrowException(empresaId);
+        return empresa.getRazaoEncerramentoObras();
+    }
+
     private Empresa returnEmpresaOrThrowException(Long empresaId){
         return empresaRepository.findById(empresaId)
                 .orElseThrow(() -> new EmpresaNotFoundException("Não há empresa com o Id: " + empresaId));
-    }
-
-
-    public Set<Obra> findAllObra(Long empresaId) {
-        return obraRepository.findByOrcamentoContratoEmpresaId(empresaId);
     }
 }
