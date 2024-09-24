@@ -15,14 +15,6 @@ INSERT INTO status_orcamento(descricao) VALUES
 ('Rejeitado');
 
 
---Status Serviço
-INSERT INTO status_servico(descricao) VALUES
-('Pendente'),
-('Em progresso'),
-('Finalizado'),
-('Cancelado');
-
-
 --Endereco
 INSERT INTO endereco (pais, estado, cep, logradouro, bairro, numero, complemento) VALUES
 ('Brasil', 'DF', '71680-376', 'Condomínio Jardins do Lago quadra 2', 'Jardim Botânico', 2, 'Cj 2 Casa 4'),
@@ -35,6 +27,15 @@ INSERT INTO endereco (pais, estado, cep, logradouro, bairro, numero, complemento
 INSERT INTO empresa (nome, cnpj, telefone, endereco_id, setor_atuacao_id) VALUES
 ('Arqline', '11414441/0001-98','61999116902', 1, 1),
 ('Araújo Ferreira', '41341341/0001-48','61999816902', 2, 2);
+
+
+--Status Serviço
+INSERT INTO status_servico(descricao, empresa_id) VALUES
+('Pendente', 1),
+('Em progresso', 1),
+('Finalizado', 1),
+('Cancelado', 1);
+
 
 
 --Administradores da empresa

@@ -11,6 +11,7 @@ import com.arq.back.orcamentoecontrato.OrcamentoContrato;
 import com.arq.back.razaoencerramentoobra.RazaoEncerramentoObra;
 import com.arq.back.servicoextra.ServicoExtra;
 import com.arq.back.servicoprestado.ServicoPrestado;
+import com.arq.back.statusservico.StatusServico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -96,6 +97,12 @@ public class EmpresaServices {
     public Set<RazaoEncerramentoObra> findAllfindAllRazoesObra(Long empresaId) {
         Empresa empresa = returnEmpresaOrThrowException(empresaId);
         return empresa.getRazaoEncerramentoObras();
+    }
+
+
+    public Set<StatusServico> findAllStatusServico(Long empresaId) {
+        Empresa empresa = returnEmpresaOrThrowException(empresaId);
+        return empresa.getStatusServico();
     }
 
     private Empresa returnEmpresaOrThrowException(Long empresaId){

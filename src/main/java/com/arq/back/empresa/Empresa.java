@@ -8,6 +8,7 @@ import com.arq.back.razaoencerramentoobra.RazaoEncerramentoObra;
 import com.arq.back.servicoextra.ServicoExtra;
 import com.arq.back.servicoprestado.ServicoPrestado;
 import com.arq.back.setoratuacao.SetorAtuacao;
+import com.arq.back.statusservico.StatusServico;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
@@ -78,4 +79,8 @@ public class Empresa {
     @JsonIgnore
     @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
     private Set<RazaoEncerramentoObra> razaoEncerramentoObras = new HashSet<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
+    private Set<StatusServico> statusServico = new HashSet<>();
 }

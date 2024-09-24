@@ -7,6 +7,7 @@ import com.arq.back.orcamentoecontrato.OrcamentoContrato;
 import com.arq.back.razaoencerramentoobra.RazaoEncerramentoObra;
 import com.arq.back.servicoextra.ServicoExtra;
 import com.arq.back.servicoprestado.ServicoPrestado;
+import com.arq.back.statusservico.StatusServico;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,5 +92,11 @@ public class EmpresaResource {
     @GetMapping("{empresa-id}/razao-encerramento")
     public Set<RazaoEncerramentoObra> findAllRazoes(@PathVariable("empresa-id") Long empresaId){
         return empresaServices.findAllfindAllRazoesObra(empresaId);
+    }
+
+    @Operation(summary = "Lista todos os status dos serviços das obras de uma empresa")
+    @GetMapping("{empresa-id}/status-servico")
+    public Set<StatusServico> findAllStatusServico(@PathVariable("empresa-id") Long empresaId){
+        return empresaServices.findAllStatusServico(empresaId);
     }
 }
