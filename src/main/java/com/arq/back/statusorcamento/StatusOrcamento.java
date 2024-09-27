@@ -1,7 +1,10 @@
 package com.arq.back.statusorcamento;
 
+import com.arq.back.empresa.Empresa;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Entity
@@ -22,5 +25,10 @@ public class StatusOrcamento {
     @Schema(description = "Descricao do status", example = "Em análise")
     private String descricao;
 
-
+    @ManyToOne
+    @JoinColumn(name = "empresa_id")
+    @NotNull
+    @JsonIgnore
+    @Schema(description = "Empresa do serviço status servico", example = "Pendente")
+    private Empresa empresa;
 }

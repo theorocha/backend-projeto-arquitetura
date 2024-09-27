@@ -7,6 +7,7 @@ import com.arq.back.orcamentoecontrato.OrcamentoContrato;
 import com.arq.back.razaoencerramentoobra.RazaoEncerramentoObra;
 import com.arq.back.servicoextra.ServicoExtra;
 import com.arq.back.servicoprestado.ServicoPrestado;
+import com.arq.back.statusorcamento.StatusOrcamento;
 import com.arq.back.statusservico.StatusServico;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -98,5 +99,11 @@ public class EmpresaResource {
     @GetMapping("{empresa-id}/status-servico")
     public Set<StatusServico> findAllStatusServico(@PathVariable("empresa-id") Long empresaId){
         return empresaServices.findAllStatusServico(empresaId);
+    }
+
+    @Operation(summary = "Lista todos os status dos orçamentos de uma empresa")
+    @GetMapping("{empresa-id}/status-orcamento")
+    public Set<StatusOrcamento> findAllStatusOrcamento(@PathVariable("empresa-id") Long empresaId){
+        return empresaServices.findAllStatusOrcamento(empresaId);
     }
 }

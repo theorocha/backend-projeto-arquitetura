@@ -11,6 +11,7 @@ import com.arq.back.orcamentoecontrato.OrcamentoContrato;
 import com.arq.back.razaoencerramentoobra.RazaoEncerramentoObra;
 import com.arq.back.servicoextra.ServicoExtra;
 import com.arq.back.servicoprestado.ServicoPrestado;
+import com.arq.back.statusorcamento.StatusOrcamento;
 import com.arq.back.statusservico.StatusServico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -103,6 +104,14 @@ public class EmpresaServices {
     public Set<StatusServico> findAllStatusServico(Long empresaId) {
         Empresa empresa = returnEmpresaOrThrowException(empresaId);
         return empresa.getStatusServico();
+    }
+
+    public Set<StatusOrcamento> findAllStatusOrcamento(Long empresaId) {
+        Empresa empresa = returnEmpresaOrThrowException(empresaId);
+        Set<StatusOrcamento> statusOrcamentos = empresa.getStatusOrcamento();
+        List<StatusOrcamento> sortedStatus = new ArrayList<>(statusOrcamentos);
+        sortedStatus.sort(Comparator.comparing(StatusOrcamento::getId));
+        return new LinkedHashSet<>(sortedStatus);
     }
 
     private Empresa returnEmpresaOrThrowException(Long empresaId){

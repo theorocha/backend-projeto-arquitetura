@@ -6,15 +6,6 @@ INSERT INTO setor_atuacao (descricao) VALUES
 ('Marketing digital');
 
 
---Status orçamento
-INSERT INTO status_orcamento(descricao) VALUES
-('A enviar'),
-('Aguardando Resposta'),
-('Em negociação'),
-('Aceito'),
-('Rejeitado');
-
-
 --Endereco
 INSERT INTO endereco (pais, estado, cep, logradouro, bairro, numero, complemento) VALUES
 ('Brasil', 'DF', '71680-376', 'Condomínio Jardins do Lago quadra 2', 'Jardim Botânico', 2, 'Cj 2 Casa 4'),
@@ -27,6 +18,15 @@ INSERT INTO endereco (pais, estado, cep, logradouro, bairro, numero, complemento
 INSERT INTO empresa (nome, cnpj, telefone, endereco_id, setor_atuacao_id) VALUES
 ('Arqline', '11414441/0001-98','61999116902', 1, 1),
 ('Araújo Ferreira', '41341341/0001-48','61999816902', 2, 2);
+
+
+--Status orçamento
+INSERT INTO status_orcamento(descricao, empresa_id) VALUES
+('A enviar', 1),
+('Aguardando Resposta', 1),
+('Em negociação', 1),
+('Aceito', 1),
+('Rejeitado', 1);
 
 
 --Status Serviço
