@@ -3,6 +3,7 @@ package com.arq.back.exceptions;
 import com.arq.back.exceptions.cliente.ClienteNotFoundException;
 import com.arq.back.exceptions.empresa.EmpresaAlreadyAssociatedException;
 import com.arq.back.exceptions.empresa.EmpresaNotFoundException;
+import com.arq.back.exceptions.obra.RazaoEncerramentoAssociadaException;
 import com.arq.back.exceptions.orcamento.OrcamentoNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +35,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(EmpresaAlreadyAssociatedException.class)
     private ResponseEntity<RestErrorMessage> empresaAlreadyAssociatedHandler(EmpresaAlreadyAssociatedException exception){
         RestErrorMessage message = new RestErrorMessage(HttpStatus.CONFLICT, exception.getMessage());
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(message);
+    }
+
+    @ExceptionHandler(RazaoEncerramentoAssociadaException.class)
+    private ResponseEntity<RestErrorMessage> razaoEncerramentoAssociadaHandler(RazaoEncerramentoAssociadaException exception){
+        RestErrorMessage message = new RestErrorMessage(HttpStatus.CONFLICT, exception.getMessage());
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(message);
     }
 }
