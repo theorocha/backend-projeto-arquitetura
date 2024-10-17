@@ -4,7 +4,12 @@ Este é o backend do Sistema de Gerenciamento de Obras, uma aplicação desenvol
 
 ## Sobre o Projeto
 
-O Sistema de Gerenciamento de Obras é uma aplicação destinada a auxiliar na gestão de obras de construção civil, projetada não apenas para construtoras, mas também para arquitetos que desejam gerenciar seus projetos de forma eficiente. Ele oferece recursos para o cadastro de obras, controle de funcionários, gerenciamento de materiais, geração de relatórios e muito mais.
+O Sistema de Gerenciamento de Obras é uma aplicação destinada a auxiliar
+na gestão de obras de construção civil, projetada não apenas para construtoras,
+mas também para arquitetos que desejam gerenciar seus projetos de forma eficiente.
+Ele oferece recursos para o cadastro de obras, controle de funcionários, gerenciamento de materiais, geração de relatórios e muito mais.
+
+Link do diagrama de relacionamento: https://miro.com/app/board/uXjVKak2dDc=/
 
 ## Tecnologias Utilizadas
 
