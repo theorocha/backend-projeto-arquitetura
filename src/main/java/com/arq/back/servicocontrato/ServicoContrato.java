@@ -2,7 +2,7 @@ package com.arq.back.servicocontrato;
 
 import com.arq.back.imagem.Imagem;
 import com.arq.back.obra.Obra;
-import com.arq.back.orcamentoecontrato.OrcamentoContrato;
+import com.arq.back.orcamento.Orcamento;
 import com.arq.back.servicoprestado.ServicoPrestado;
 import com.arq.back.statusservico.StatusServico;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -48,7 +48,7 @@ public class ServicoContrato {
     @ManyToOne
     @JoinColumn(name = "orcamento_id")
     @Schema(description = "Orçamento", example = "Alvenaria")
-    private OrcamentoContrato orcamentoContrato;
+    private Orcamento orcamento;
 
     @JsonIgnore
     @OneToMany(mappedBy = "servicoContrato", cascade = CascadeType.ALL)

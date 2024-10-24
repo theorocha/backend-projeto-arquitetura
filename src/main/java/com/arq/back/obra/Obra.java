@@ -1,6 +1,6 @@
 package com.arq.back.obra;
 
-import com.arq.back.orcamentoecontrato.OrcamentoContrato;
+import com.arq.back.orcamento.Orcamento;
 import com.arq.back.razaoencerramentoobra.RazaoEncerramentoObra;
 import com.arq.back.servicocontrato.ServicoContrato;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -35,7 +35,7 @@ public class Obra {
 
     @OneToOne
     @JoinColumn(name = "orcamento_id")
-    private OrcamentoContrato orcamentoContrato;
+    private Orcamento orcamento;
 
     @ManyToOne
     @JoinColumn(name = "razao_encerramento")

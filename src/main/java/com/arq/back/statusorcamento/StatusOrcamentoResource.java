@@ -1,4 +1,4 @@
-package com.arq.back.razaoencerramentoobra;
+package com.arq.back.statusorcamento;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/razao-encerramento")
+@RequestMapping("/api/status-orcamento")
 @Schema(description = "Controlador de razões de encerramento")
-public class RazaoEncerramentoObraResource {
+public class StatusOrcamentoResource {
 
     @Autowired
-    RazaoEncerramentoObraService razaoEncerramentoObraService;
+    StatusOrcamentoService statusOrcamentoService;
 
-    @Operation(summary = "Exclui razão de encerramento por id")
+    @Operation(summary = "Exclui status orçamento por id")
     @DeleteMapping("{id}/empresa/{empresaId}")
     public void deleteById(@PathVariable("id") Long id, @PathVariable ("empresaId") Long empresaId){
-        razaoEncerramentoObraService.deleteById(empresaId, id);
+        statusOrcamentoService.deleteById(empresaId, id);
     }
 }

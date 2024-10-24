@@ -1,4 +1,4 @@
-package com.arq.back.orcamentoecontrato;
+package com.arq.back.orcamento;
 
 import com.arq.back.cliente.Cliente;
 import com.arq.back.empresa.Empresa;
@@ -17,14 +17,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "orcamento_contrato")
+@Table(name = "orcamento")
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
 @AllArgsConstructor
 @NoArgsConstructor
 @Schema(description = "Orçamentos/Contratos")
-public class OrcamentoContrato {
+public class Orcamento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -75,10 +75,10 @@ public class OrcamentoContrato {
     private StatusOrcamento status;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "orcamentoContrato", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "orcamento", cascade = CascadeType.ALL)
     private Set<ServicoContrato> servicosContratos = new HashSet<>();
 
     @JsonIgnore
-    @OneToOne(mappedBy = "orcamentoContrato")
+    @OneToOne(mappedBy = "orcamento")
     private Obra obra;
 }

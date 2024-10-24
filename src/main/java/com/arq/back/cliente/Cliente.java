@@ -2,7 +2,7 @@ package com.arq.back.cliente;
 
 import com.arq.back.empresa.Empresa;
 import com.arq.back.endereco.Endereco;
-import com.arq.back.orcamentoecontrato.OrcamentoContrato;
+import com.arq.back.orcamento.Orcamento;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
@@ -62,5 +62,5 @@ public class Cliente {
 
     @JsonIgnore
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
-    private Set<OrcamentoContrato> orcamentos = new HashSet<>();
+    private Set<Orcamento> orcamentos = new HashSet<>();
 }

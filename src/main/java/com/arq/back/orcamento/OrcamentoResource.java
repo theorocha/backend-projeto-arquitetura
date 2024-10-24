@@ -1,4 +1,4 @@
-package com.arq.back.orcamentoecontrato;
+package com.arq.back.orcamento;
 
 import com.arq.back.servicocontrato.ServicoContrato;
 import io.swagger.v3.oas.annotations.Operation;

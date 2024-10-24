@@ -5,7 +5,7 @@ import com.arq.back.empresa.EmpresaRepository;
 import com.arq.back.exceptions.cliente.ClienteNotFoundException;
 import com.arq.back.exceptions.empresa.EmpresaAlreadyAssociatedException;
 import com.arq.back.exceptions.empresa.EmpresaNotFoundException;
-import com.arq.back.orcamentoecontrato.OrcamentoContrato;
+import com.arq.back.orcamento.Orcamento;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,7 +41,7 @@ public class ClienteServices {
         return ResponseEntity.status(HttpStatus.CREATED).body(cliente);
     }
 
-    public Set<OrcamentoContrato> findAllOrcamento(Long clienteId) {
+    public Set<Orcamento> findAllOrcamento(Long clienteId) {
         Cliente cliente = returnClientOrThrowException(clienteId);
         return cliente.getOrcamentos();
     }

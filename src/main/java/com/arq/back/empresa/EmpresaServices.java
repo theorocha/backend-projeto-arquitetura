@@ -7,7 +7,7 @@ import com.arq.back.cliente.ClienteServices;
 import com.arq.back.exceptions.empresa.EmpresaNotFoundException;
 import com.arq.back.obra.Obra;
 import com.arq.back.obra.ObraRepository;
-import com.arq.back.orcamentoecontrato.OrcamentoContrato;
+import com.arq.back.orcamento.Orcamento;
 import com.arq.back.razaoencerramentoobra.RazaoEncerramentoObra;
 import com.arq.back.servicoextra.ServicoExtra;
 import com.arq.back.servicoprestado.ServicoPrestado;
@@ -66,7 +66,7 @@ public class EmpresaServices {
         return new LinkedHashSet<>(sortedServicos);
     }
 
-    public Set<OrcamentoContrato> findAllOrcamentos(Long empresaId) {
+    public Set<Orcamento> findAllOrcamentos(Long empresaId) {
         Empresa empresa = returnEmpresaOrThrowException(empresaId);
         return empresa.getOrcamentos();
     }
@@ -92,7 +92,7 @@ public class EmpresaServices {
     }
 
     public Set<Obra> findAllObra(Long empresaId) {
-        return obraRepository.findByOrcamentoContratoEmpresaId(empresaId);
+        return obraRepository.findByOrcamentoEmpresaId(empresaId);
     }
 
     public Set<RazaoEncerramentoObra> findAllfindAllRazoesObra(Long empresaId) {

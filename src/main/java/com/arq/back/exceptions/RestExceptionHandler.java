@@ -5,6 +5,7 @@ import com.arq.back.exceptions.empresa.EmpresaAlreadyAssociatedException;
 import com.arq.back.exceptions.empresa.EmpresaNotFoundException;
 import com.arq.back.exceptions.obra.RazaoEncerramentoAssociadaException;
 import com.arq.back.exceptions.orcamento.OrcamentoNotFoundException;
+import com.arq.back.exceptions.orcamento.StatusOrcamentoAssociadaException;
 import com.arq.back.exceptions.util.UnauthorizedAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +42,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(RazaoEncerramentoAssociadaException.class)
     private ResponseEntity<RestErrorMessage> razaoEncerramentoAssociadaHandler(RazaoEncerramentoAssociadaException exception){
+        RestErrorMessage message = new RestErrorMessage(HttpStatus.CONFLICT, exception.getMessage());
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(message);
+    }
+
+    @ExceptionHandler(StatusOrcamentoAssociadaException.class)
+    private ResponseEntity<RestErrorMessage> statusOrcamentoAssociadaHandler(StatusOrcamentoAssociadaException exception){
         RestErrorMessage message = new RestErrorMessage(HttpStatus.CONFLICT, exception.getMessage());
         return ResponseEntity.status(HttpStatus.CONFLICT).body(message);
     }

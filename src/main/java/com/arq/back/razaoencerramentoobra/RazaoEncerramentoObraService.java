@@ -28,7 +28,6 @@ public class RazaoEncerramentoObraService {
         if (!razao.getEmpresa().getId().equals(empresaId) ){
             throw new UnauthorizedAccessException("Você não tem permissão para deletar esta razão de encerramento.");
         }
-
         razaoEncerramentoObraRepository.deleteById(id);
     }
 }

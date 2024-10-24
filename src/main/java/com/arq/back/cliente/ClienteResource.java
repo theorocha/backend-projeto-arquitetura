@@ -1,7 +1,7 @@
 package com.arq.back.cliente;
 
 import com.arq.back.empresa.Empresa;
-import com.arq.back.orcamentoecontrato.OrcamentoContrato;
+import com.arq.back.orcamento.Orcamento;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class ClienteResource {
 
     @Operation(summary = "Listar todos os orçamentos de um cliente")
     @GetMapping("{cliente-id}/orcamentos")
-    public Set<OrcamentoContrato> addEmpresaToEmpresas(@PathVariable("cliente-id") Long clienteId){
+    public Set<Orcamento> addEmpresaToEmpresas(@PathVariable("cliente-id") Long clienteId){
         return clienteServices.findAllOrcamento(clienteId);
     }
     @Operation(summary = "Exclui um cliente")

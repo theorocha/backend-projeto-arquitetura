@@ -88,7 +88,7 @@ VALUES
 
 
 -- Inserir orçamentos
-INSERT INTO orcamento_contrato (descricao, valor_contrato, data_envio, data_validade, observacao, endereco_id, cliente_id, empresa_id, status_id) VALUES
+INSERT INTO orcamento (descricao, valor_contrato, data_envio, data_validade, observacao, endereco_id, cliente_id, empresa_id, status_id) VALUES
 ('Projeto de design de interiores para uma residência de luxo.', 5000, '2023-02-11', '2023-02-19', 'Observação do contrato 1', 1, 1, 1, 4),
 ('Contrato de construção civil para uma nova sede corporativa.', 6000, '2023-04-20', '2023-04-30', 'Esse já foi finalizado', 3, 3, 1, 4),
 ('Serviços de consultoria em arquitetura para um projeto comercial.', 7000, '2023-03-15', '2023-03-25', 'Observação do contrato 2', 2, 2, 2, 2);

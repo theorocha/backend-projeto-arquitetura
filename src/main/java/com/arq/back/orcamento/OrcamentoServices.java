@@ -1,4 +1,4 @@
-package com.arq.back.orcamentoecontrato;
+package com.arq.back.orcamento;
 
 import com.arq.back.exceptions.orcamento.OrcamentoNotFoundException;
 import com.arq.back.servicocontrato.ServicoContrato;
@@ -14,11 +14,11 @@ public class OrcamentoServices {
     OrcamentoRepository orcamentoRepository;
 
     public Set<ServicoContrato> findAllServicos(Long orcamentoId) {
-        OrcamentoContrato orcamentoContrato = returnOrcamentoOrThrowException(orcamentoId);
-        return orcamentoContrato.getServicosContratos();
+        Orcamento orcamento = returnOrcamentoOrThrowException(orcamentoId);
+        return orcamento.getServicosContratos();
     }
 
-    private OrcamentoContrato returnOrcamentoOrThrowException(Long empresaId){
+    private Orcamento returnOrcamentoOrThrowException(Long empresaId){
         return orcamentoRepository.findById(empresaId)
                 .orElseThrow(() -> new OrcamentoNotFoundException("Não há orcamento com o Id: " + empresaId));
     }
