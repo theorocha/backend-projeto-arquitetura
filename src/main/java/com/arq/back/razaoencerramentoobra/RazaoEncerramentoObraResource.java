@@ -17,8 +17,8 @@ public class RazaoEncerramentoObraResource {
     RazaoEncerramentoObraService razaoEncerramentoObraService;
 
     @Operation(summary = "Exclui razão de encerramento por id")
-    @DeleteMapping("{id}")
-    public void deleteById(@PathVariable("id") Long id){
-        razaoEncerramentoObraService.deleteById(id);
+    @DeleteMapping("{id}/empresa/{empresaId}")
+    public void deleteById(@PathVariable("id") Long id, @PathVariable ("empresaId") Long empresaId){
+        razaoEncerramentoObraService.deleteById(empresaId, id);
     }
 }

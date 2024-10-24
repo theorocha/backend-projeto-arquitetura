@@ -5,6 +5,7 @@ import com.arq.back.exceptions.empresa.EmpresaAlreadyAssociatedException;
 import com.arq.back.exceptions.empresa.EmpresaNotFoundException;
 import com.arq.back.exceptions.obra.RazaoEncerramentoAssociadaException;
 import com.arq.back.exceptions.orcamento.OrcamentoNotFoundException;
+import com.arq.back.exceptions.util.UnauthorizedAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -42,5 +43,11 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     private ResponseEntity<RestErrorMessage> razaoEncerramentoAssociadaHandler(RazaoEncerramentoAssociadaException exception){
         RestErrorMessage message = new RestErrorMessage(HttpStatus.CONFLICT, exception.getMessage());
         return ResponseEntity.status(HttpStatus.CONFLICT).body(message);
+    }
+
+    @ExceptionHandler(UnauthorizedAccessException.class)
+    private ResponseEntity<RestErrorMessage> unathorizedHandler(UnauthorizedAccessException exception){
+        RestErrorMessage message = new RestErrorMessage(HttpStatus.UNAUTHORIZED, exception.getMessage());
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(message);
     }
 }
