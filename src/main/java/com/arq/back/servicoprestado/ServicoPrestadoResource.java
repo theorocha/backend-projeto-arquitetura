@@ -1,4 +1,4 @@
-package com.arq.back.servicoextra;
+package com.arq.back.servicoprestado;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/servico-extra")
-@Schema(description = "Controlador de serviço extra")
-public class ServicoExtraResource {
+@RequestMapping("/api/servico-prestado")
+@Schema(description = "Controlador de serviço prestado")
+public class ServicoPrestadoResource {
 
     @Autowired
-    ServicoExtraServices servicoExtraServices;
+    ServicoPrestadoService servicoPrestadoService;
 
-    @Operation(summary = "Exclui serviço extra por id")
+    @Operation(summary = "Exclui serviço prestado por id")
     @DeleteMapping("{id}/empresa/{empresaId}")
     public void deleteById(@PathVariable("id") Long id, @PathVariable ("empresaId") Long empresaId){
-        servicoExtraServices.deleteById(empresaId, id);
+        servicoPrestadoService.deleteById(empresaId, id);
     }
 }

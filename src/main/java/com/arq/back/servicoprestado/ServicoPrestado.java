@@ -19,7 +19,7 @@ public class ServicoPrestado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Schema(description = "Identificador único", example = "1")
-    private Integer id;
+    private Long id;
 
     @NotNull
     @Schema(description = "Descricao do servico prestado", example = "Marketing digital")

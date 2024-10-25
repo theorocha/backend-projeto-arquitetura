@@ -56,7 +56,8 @@ public class Cliente {
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "cliente_empresa",
             joinColumns = @JoinColumn(name = "cliente_id"),
-            inverseJoinColumns = @JoinColumn(name = "empresa_id"))
+            inverseJoinColumns = @JoinColumn(name = "empresa_id")
+    )
     private Set<Empresa> empresas = new HashSet<>();
 
 

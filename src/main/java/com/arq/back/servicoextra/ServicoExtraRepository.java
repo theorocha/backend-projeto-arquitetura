@@ -8,6 +8,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ServicoExtraRepository extends JpaRepository<ServicoExtra, Integer> {
+public interface ServicoExtraRepository extends JpaRepository<ServicoExtra, Long> {
     List<ServicoExtra> findAllByEmpresa(Optional<Empresa> empresa);
 }

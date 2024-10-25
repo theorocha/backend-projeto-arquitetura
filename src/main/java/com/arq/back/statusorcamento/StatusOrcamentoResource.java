@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/status-orcamento")
-@Schema(description = "Controlador de razões de encerramento")
+@Schema(description = "Controlador de status de orçamento.")
 public class StatusOrcamentoResource {
 
     @Autowired

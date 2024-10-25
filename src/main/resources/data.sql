@@ -115,6 +115,15 @@ INSERT INTO imagens (nome_do_arquivo, tipo_do_arquivo, conteudo, servico_id) VAL
 ('euemomis.png', 'image/jpeg', 'mycontent', 2);
 
 
+-- Inserir relacionamentos entre clientes e empresas
+INSERT INTO orcamento_servico_extra (orcamento_id, servico_extra_id)
+VALUES
+(1, 1),
+(2, 3),
+(3, 4),
+(1, 2);
+
+
 
 
 

@@ -5,6 +5,7 @@ import com.arq.back.empresa.Empresa;
 import com.arq.back.endereco.Endereco;
 import com.arq.back.obra.Obra;
 import com.arq.back.servicocontrato.ServicoContrato;
+import com.arq.back.servicoextra.ServicoExtra;
 import com.arq.back.statusorcamento.StatusOrcamento;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -81,4 +82,14 @@ public class Orcamento {
     @JsonIgnore
     @OneToOne(mappedBy = "orcamento")
     private Obra obra;
+
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(
+            name = "orcamento_servico_extra",
+            joinColumns = @JoinColumn(name = "orcamento_id"),
+            inverseJoinColumns = @JoinColumn(name = "servico_extra_id")
+    )
+    @Schema(description = "Serviços extras relacionados ao orçamento")
+    private Set<ServicoExtra> servicosExtras = new HashSet<>();
 }

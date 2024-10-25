@@ -1,7 +1,7 @@
 package com.arq.back.razaoencerramentoobra;
 
 
-import com.arq.back.exceptions.obra.RazaoEncerramentoAssociadaException;
+import com.arq.back.exceptions.razaoencerramento.RazaoEncerramentoAssociadaException;
 import com.arq.back.exceptions.util.UnauthorizedAccessException;
 import com.arq.back.obra.ObraRepository;
 import jakarta.persistence.EntityNotFoundException;

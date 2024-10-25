@@ -3,9 +3,12 @@ package com.arq.back.exceptions;
 import com.arq.back.exceptions.cliente.ClienteNotFoundException;
 import com.arq.back.exceptions.empresa.EmpresaAlreadyAssociatedException;
 import com.arq.back.exceptions.empresa.EmpresaNotFoundException;
-import com.arq.back.exceptions.obra.RazaoEncerramentoAssociadaException;
+import com.arq.back.exceptions.razaoencerramento.RazaoEncerramentoAssociadaException;
 import com.arq.back.exceptions.orcamento.OrcamentoNotFoundException;
-import com.arq.back.exceptions.orcamento.StatusOrcamentoAssociadaException;
+import com.arq.back.exceptions.servicoextra.ServicoExtraAssociadoException;
+import com.arq.back.exceptions.servicoprestado.ServicoPrestadoAssociadoException;
+import com.arq.back.exceptions.statusorcamento.StatusOrcamentoAssociadoException;
+import com.arq.back.exceptions.statusservico.StatusServicoAssociadoException;
 import com.arq.back.exceptions.util.UnauthorizedAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,8 +49,26 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(message);
     }
 
-    @ExceptionHandler(StatusOrcamentoAssociadaException.class)
-    private ResponseEntity<RestErrorMessage> statusOrcamentoAssociadaHandler(StatusOrcamentoAssociadaException exception){
+    @ExceptionHandler(StatusOrcamentoAssociadoException.class)
+    private ResponseEntity<RestErrorMessage> statusOrcamentoAssociadoHandler(StatusOrcamentoAssociadoException exception){
+        RestErrorMessage message = new RestErrorMessage(HttpStatus.CONFLICT, exception.getMessage());
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(message);
+    }
+
+    @ExceptionHandler(StatusServicoAssociadoException.class)
+    private ResponseEntity<RestErrorMessage> statusServicoAssociadoHandler(StatusServicoAssociadoException exception){
+        RestErrorMessage message = new RestErrorMessage(HttpStatus.CONFLICT, exception.getMessage());
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(message);
+    }
+
+    @ExceptionHandler(ServicoExtraAssociadoException.class)
+    private ResponseEntity<RestErrorMessage> servicoExtraAssociadoHandler(ServicoExtraAssociadoException exception){
+        RestErrorMessage message = new RestErrorMessage(HttpStatus.CONFLICT, exception.getMessage());
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(message);
+    }
+
+    @ExceptionHandler(ServicoPrestadoAssociadoException.class)
+    private ResponseEntity<RestErrorMessage> servicoPrestadoAssociadoHandler(ServicoPrestadoAssociadoException exception){
         RestErrorMessage message = new RestErrorMessage(HttpStatus.CONFLICT, exception.getMessage());
         return ResponseEntity.status(HttpStatus.CONFLICT).body(message);
     }
