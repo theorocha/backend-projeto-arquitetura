@@ -1,6 +1,8 @@
 package com.arq.back.razaoencerramentoobra;
 
 
+import com.arq.back.empresa.Empresa;
+import com.arq.back.empresa.EmpresaRepository;
 import com.arq.back.exceptions.obra.RazaoEncerramentoAssociadaException;
 import com.arq.back.exceptions.util.UnauthorizedAccessException;
 import com.arq.back.obra.ObraRepository;
@@ -17,6 +19,9 @@ public class RazaoEncerramentoObraService {
     @Autowired
     ObraRepository obraRepository;
 
+    @Autowired
+    private EmpresaRepository empresaRepository;
+
 
     public void deleteById(Long empresaId, Long id) {
         RazaoEncerramentoObra razao = razaoEncerramentoObraRepository.findById(id)
@@ -29,5 +34,12 @@ public class RazaoEncerramentoObraService {
             throw new UnauthorizedAccessException("Você não tem permissão para deletar esta razão de encerramento.");
         }
         razaoEncerramentoObraRepository.deleteById(id);
+    }
+
+    public RazaoEncerramentoObra criarRazaoEncerramento(RazaoEncerramentoObra razaoEncerramento, Long empresaId) {
+        Empresa empresa = empresaRepository.findById(empresaId)
+                .orElseThrow(() -> new EntityNotFoundException("Empresa não encontrada."));
+        razaoEncerramento.setEmpresa(empresa);
+        return razaoEncerramentoObraRepository.save(razaoEncerramento);
     }
 }
