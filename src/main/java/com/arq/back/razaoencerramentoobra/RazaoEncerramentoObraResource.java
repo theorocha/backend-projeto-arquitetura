@@ -3,10 +3,8 @@ package com.arq.back.razaoencerramentoobra;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/razao-encerramento")
@@ -15,6 +13,14 @@ public class RazaoEncerramentoObraResource {
 
     @Autowired
     RazaoEncerramentoObraService razaoEncerramentoObraService;
+
+    @PostMapping("/empresa/{empresaId}")
+    public ResponseEntity<RazaoEncerramentoObra> criarRazaoEncerramento(
+            @PathVariable Long empresaId,
+            @RequestBody RazaoEncerramentoObra razaoEncerramento) {
+        razaoEncerramento = razaoEncerramentoObraService.criarRazaoEncerramento(razaoEncerramento, empresaId);
+        return ResponseEntity.ok(razaoEncerramento);
+    }
 
     @Operation(summary = "Exclui razão de encerramento por id")
     @DeleteMapping("{id}/empresa/{empresaId}")

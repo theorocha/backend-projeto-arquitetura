@@ -97,7 +97,10 @@ public class EmpresaServices {
 
     public Set<RazaoEncerramentoObra> findAllfindAllRazoesObra(Long empresaId) {
         Empresa empresa = returnEmpresaOrThrowException(empresaId);
-        return empresa.getRazaoEncerramentoObras();
+        Set<RazaoEncerramentoObra> razaoEncerramentoObras = empresa.getRazaoEncerramentoObras();
+        List<RazaoEncerramentoObra> sortedRazoes = new ArrayList<>(razaoEncerramentoObras);
+        sortedRazoes.sort(Comparator.comparing(RazaoEncerramentoObra::getId));
+        return new LinkedHashSet<>(sortedRazoes);
     }
 
 
