@@ -4,10 +4,8 @@ package com.arq.back.statusservico;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/status-servico")
@@ -15,11 +13,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class StatusServicoResource {
 
     @Autowired
-    StatusServicoServico statusServicoServico;
+    StatusServicoService statusServicoService;
+
+    @Operation(summary = "Cria novo status de serviço")
+    @PostMapping("/empresa/{empresaId}")
+    public ResponseEntity<StatusServico> criarStatusServico(
+            @PathVariable Long empresaId,
+            @RequestBody StatusServico statusServico) {
+        statusServico = statusServicoService.criarStatusServico(statusServico, empresaId);
+        return ResponseEntity.ok(statusServico);
+    }
 
     @Operation(summary = "Exclui status serviço por id")
     @DeleteMapping("{id}/empresa/{empresaId}")
     public void deleteById(@PathVariable("id") Long id, @PathVariable ("empresaId") Long empresaId){
-        statusServicoServico.deleteById(empresaId, id);
+        statusServicoService.deleteById(empresaId, id);
     }
 }

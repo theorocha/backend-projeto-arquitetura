@@ -14,6 +14,7 @@ public class RazaoEncerramentoObraResource {
     @Autowired
     RazaoEncerramentoObraService razaoEncerramentoObraService;
 
+    @Operation(summary = "Cria nova razão de encerramento")
     @PostMapping("/empresa/{empresaId}")
     public ResponseEntity<RazaoEncerramentoObra> criarRazaoEncerramento(
             @PathVariable Long empresaId,

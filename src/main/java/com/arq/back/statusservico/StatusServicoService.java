@@ -1,21 +1,27 @@
 package com.arq.back.statusservico;
 
+import com.arq.back.empresa.Empresa;
+import com.arq.back.empresa.EmpresaRepository;
 import com.arq.back.exceptions.statusorcamento.StatusOrcamentoAssociadoException;
 import com.arq.back.exceptions.util.UnauthorizedAccessException;
 import com.arq.back.servicocontrato.ServicoContratoRepository;
-import com.arq.back.statusorcamento.StatusOrcamento;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
-public class StatusServicoServico {
+public class StatusServicoService {
 
     @Autowired
     StatusServicoRepository statusServicoRepository;
 
     @Autowired
     ServicoContratoRepository servicoContratoRepository;
+
+    @Autowired
+    EmpresaRepository empresaRepository;
 
     public void deleteById(Long empresaId, Long id) {
         StatusServico status = statusServicoRepository.findById(id)
@@ -28,5 +34,11 @@ public class StatusServicoServico {
             throw new UnauthorizedAccessException("Você não tem permissão para deletar este status de serviço.");
         }
         statusServicoRepository.deleteById(id);
+    }
+
+    public StatusServico criarStatusServico(StatusServico statusServico, Long empresaId) {
+        Optional<Empresa> empresa = empresaRepository.findById(empresaId);
+        statusServico.setEmpresa(empresa.get());
+        return statusServicoRepository.save(statusServico);
     }
 }
