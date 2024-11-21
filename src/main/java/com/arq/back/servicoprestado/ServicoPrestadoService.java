@@ -1,11 +1,15 @@
 package com.arq.back.servicoprestado;
 
+import com.arq.back.empresa.Empresa;
+import com.arq.back.empresa.EmpresaRepository;
 import com.arq.back.exceptions.servicoprestado.ServicoPrestadoAssociadoException;
 import com.arq.back.exceptions.util.UnauthorizedAccessException;
 import com.arq.back.servicocontrato.ServicoContratoRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class ServicoPrestadoService {
@@ -15,6 +19,9 @@ public class ServicoPrestadoService {
 
     @Autowired
     ServicoContratoRepository servicoContratoRepository;
+
+    @Autowired
+    EmpresaRepository empresaRepository;
 
     public void deleteById(Long empresaId, Long id) {
         ServicoPrestado servico = servicoPrestadoRepository.findById(id)
@@ -27,5 +34,11 @@ public class ServicoPrestadoService {
             throw new UnauthorizedAccessException("Você não tem permissão para deletar este serviço.");
         }
         servicoPrestadoRepository.deleteById(id);
+    }
+
+    public ServicoPrestado criarServicoPrestado(ServicoPrestado servicoPrestado, Long empresaId) {
+        Optional<Empresa> empresa = empresaRepository.findById(empresaId);
+        servicoPrestado.setEmpresa(empresa.get());
+        return servicoPrestadoRepository.save(servicoPrestado);
     }
 }
